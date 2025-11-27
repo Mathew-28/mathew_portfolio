@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mathew Monay — Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.png" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="logo" href="index.html">Mathew Sebastian Monay</a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" data-reveal data-direction="up">
+      <div class="hero-text">
+        <h1>Hi, I’m <span class="accent">Mathew Sebastian Monay</span>.</h1>
+        <p class="lead">A student passionate about technology and computer science. I enjoy exploring new ideas and turning my curiosity into projects that challenge me to learn and grow. This website is a space where I share my work, experiments, and creative endeavors. I’m always eager to connect, collaborate, and discover new opportunities to expand my skills. Thanks for stopping by—feel free to explore and get to know my journey!</p>
+        <p>
+        </p>
+      </div>
+      <div class="hero-image" data-reveal data-direction="right">
+        <img src="https://od2-image-api.abs-cbn.com/prod/editorImage/1752831479941Teleserye-roles-that-defined-Joshua-Garcias-journey-to-becoming-a-sought-after.jpg" alt="Profile photo">
+      </div>
+    </section>
+
+
+    <section class="container featured-projects" data-reveal data-direction="up">
+      <h2>Featured Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card" data-reveal data-direction="left">
+          <h3>Smart Health Diagnosis Chatbot</h3>
+          <p>Technologies: Python, NLP (NLTK), Flask, HTML/CSS.</p>
+          <p><a href="projects.html#project-dashboard" class="link-inline">Learn more →</a></p>
+        </article>
+
+        <article class="project-card" data-reveal data-direction="right">
+          <h3>Expense Tracking and Budget PlannerApp</h3>
+          <p>Technologies: Kotlin/Java (Mobile) or React.js (Web), Firebase / MySQL</p>
+          <p><a href="projects.html#project-dashboard" class="link-inline">Learn more →</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container contact-cta" data-reveal data-direction="up">
+      <h2>Want to work together?</h2>
+      <p>I keep my circle real, my mindset locked in, and my goals moving.</p>
+      <a class="btn" href="contact.html">Contact me</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Mathew Monay — Built with HTML, &amp; CSS</p>
+      <p class="footer-links">
+        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> ·
+        <a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script> 
+<body>
+  <!-- Welcome Overlay -->
+<div id="welcomeOverlay" style="
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1000;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+">
+  <h1 style="font-size: 3em; margin: 0;">Welcome to my website!</h1>
+  <p style="font-size: 1.2em;">Click proceed to enter</p>
+  <button id="proceedBtn" style="
+    padding: 12px 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 8px;
+    color: white;
+  ">
+    Proceed
+  </button>
+</div>
+
+<script>
+  const overlay = document.getElementById('welcomeOverlay');
+  const btn = document.getElementById('proceedBtn');
+
+
+  if (localStorage.getItem("visitedBefore")) {
+    overlay.style.display = "none";
+  }
+
+
+  btn.addEventListener("click", () => {
+    overlay.style.opacity = "0";
+    overlay.style.transform = "translateY(-100%)";
+
+    // Save that user has already visited
+    localStorage.setItem("visitedBefore", "true");
+
+    setTimeout(() => {
+      overlay.style.display = "none";
+    }, 800);
+  });
+</script>
+
+
+</html>
