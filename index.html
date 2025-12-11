@@ -11,28 +11,62 @@
   <header class="site-header">
     <div class="container nav-row">
       <a class="logo" href="index.html">Mathew Sebastian Monay</a>
+
+      <!-- CSS-only mobile nav toggle: add the hidden checkbox + label BEFORE the nav -->
+      <input id="nav-checkbox" class="nav-checkbox" type="checkbox" aria-hidden="true" />
+      <label for="nav-checkbox" class="nav-toggle" aria-label="Toggle navigation">☰</label>
+
       <nav class="nav">
         <a href="index.html" class="nav-link active">Home</a>
         <a href="projects.html" class="nav-link">Projects</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </nav>
-      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+      <!-- removed JS-based <button class="nav-toggle"> -->
     </div>
   </header>
+
+  <!-- Welcome Overlay -->
+  <div id="welcomeOverlay" style="
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1000;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  ">
+    <h1 style="font-size: 3em; margin: 0;">Welcome to my website!</h1>
+    <p style="font-size: 1.2em;">Click proceed to enter</p>
+    <button id="proceedBtn" style="
+      padding: 12px 30px;
+      font-size: 1.1em;
+      cursor: pointer;
+      background-color: #3b82f6;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      margin-top: 18px;
+    ">
+      Proceed
+    </button>
+  </div>
 
   <main>
     <section class="hero container" data-reveal data-direction="up">
       <div class="hero-text">
         <h1>Hi, I’m <span class="accent">Mathew Sebastian Monay</span>.</h1>
         <p class="lead">A student passionate about technology and computer science. I enjoy exploring new ideas and turning my curiosity into projects that challenge me to learn and grow. This website is a space where I share my work, experiments, and creative endeavors. I’m always eager to connect, collaborate, and discover new opportunities to expand my skills. Thanks for stopping by—feel free to explore and get to know my journey!</p>
-        <p>
-        </p>
       </div>
       <div class="hero-image" data-reveal data-direction="right">
         <img src="https://od2-image-api.abs-cbn.com/prod/editorImage/1752831479941Teleserye-roles-that-defined-Joshua-Garcias-journey-to-becoming-a-sought-after.jpg" alt="Profile photo">
       </div>
     </section>
-
 
     <section class="container featured-projects" data-reveal data-direction="up">
       <h2>Featured Projects</h2>
@@ -68,62 +102,90 @@
     </div>
   </footer>
 
-  <script src="main.js"></script> 
-<body>
-  <!-- Welcome Overlay -->
-<div id="welcomeOverlay" style="
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(135deg, #1e3a8a, #2563eb);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  z-index: 1000;
-  transition: opacity 0.8s ease, transform 0.8s ease;
-">
-  <h1 style="font-size: 3em; margin: 0;">Welcome to my website!</h1>
-  <p style="font-size: 1.2em;">Click proceed to enter</p>
-  <button id="proceedBtn" style="
-    padding: 12px 30px;
-    font-size: 1.1em;
-    cursor: pointer;
-    background-color: #3b82f6;
-    border: none;
-    border-radius: 8px;
-    color: white;
-  ">
-    Proceed
-  </button>
-</div>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // -Footer year
+    var y = new Date().getFullYear();
+    ['year','year-about','year-projects','year-contact'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) el.textContent = y;
+    });
 
-<script>
-  const overlay = document.getElementById('welcomeOverlay');
-  const btn = document.getElementById('proceedBtn');
+    // - Scroll reveal
+    var reveals = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    if ('IntersectionObserver' in window && reveals.length) {
+      var observer = new IntersectionObserver(function(entries, obs){
+        entries.forEach(function(entry){
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          var dir = el.getAttribute('data-direction') || 'up';
+          switch (dir) {
+            case 'left': el.style.transform = 'translateX(-18px)'; break;
+            case 'right': el.style.transform = 'translateX(18px)'; break;
+            case 'up':
+            default: el.style.transform = 'translateY(18px)';
+          }
 
+          var children = el.children && el.children.length ? Array.prototype.slice.call(el.children) : [];
+          if (children.length > 1) {
+            children.forEach(function(child, i){
+              child.style.transition = '1s cubic-bezier(.2,.9,.2,1)';
+              child.style.opacity = 0;
+              setTimeout(function(){
+                child.classList.add('visible');
+                child.style.opacity = 1;
+              }, i * 120 + 50);
+            });
+          }
 
-  if (localStorage.getItem("visitedBefore")) {
-    overlay.style.display = "none";
-  }
+          setTimeout(function(){
+            el.classList.add('visible');
+            el.style.transform = 'translateY(0)';
+          }, 60);
 
+          obs.unobserve(el);
+        });
+      }, { threshold: 0.15 });
 
-  btn.addEventListener("click", () => {
-    overlay.style.opacity = "0";
-    overlay.style.transform = "translateY(-100%)";
+      reveals.forEach(function(r){ observer.observe(r); });
+    } else {
+      // fallback: reveal everything immediately
+      reveals.forEach(function(el){
+        el.classList.add('visible');
+        el.style.transform = 'translateY(0)';
+        var children = el.children && el.children.length ? Array.prototype.slice.call(el.children) : [];
+        children.forEach(function(child){
+          child.classList.add('visible');
+          child.style.opacity = 1;
+        });
+      });
+    }
 
-    // Save that user has already visited
-    localStorage.setItem("visitedBefore", "true");
+    // --- Welcome overlay behavior (uses localStorage) ---
+    var overlay = document.getElementById('welcomeOverlay');
+    var btn = document.getElementById('proceedBtn');
 
-    setTimeout(() => {
-      overlay.style.display = "none";
-    }, 800);
+    if (overlay) {
+      if (localStorage.getItem("visitedBefore")) {
+        overlay.style.display = "none";
+      } else {
+        overlay.style.display = "";
+      }
+
+      if (btn) {
+        btn.addEventListener("click", function () {
+          overlay.style.opacity = "0";
+          overlay.style.transform = "translateY(-100%)";
+
+          localStorage.setItem("visitedBefore", "true");
+
+          setTimeout(function () {
+            overlay.style.display = "none";
+          }, 800);
+        }, { once: true });
+      }
+    }
   });
-</script>
-
-
+  </script>
+</body>
 </html>
-
-
