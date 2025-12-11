@@ -254,3 +254,77 @@ hr{border:none;border-top:1px solid #e6edf3;margin:12px 0;}
 /* (Optional) small visual tweak for overlay when hidden via JS transitions */
 #welcomeOverlay[style*="display: none"] { display: none !important; }
 }
+/* Project Card Container Layout */
+.project-card-container {
+  display: flex;
+  gap: 24px;
+  background: var(--card);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.project-card-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.project-image-box {
+  flex: 0 0 280px;
+  background: var(--bg);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border: 2px solid var(--input-border);
+}
+
+.project-image-box img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.project-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-info h2 {
+  margin: 0 0 12px 0;
+  color: var(--accent-light);
+}
+
+.project-info p {
+  margin: 6px 0;
+  color: var(--muted);
+}
+
+.project-info .link-inline {
+  margin-top: 12px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.project-info .link-inline:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .project-card-container {
+    flex-direction: column;
+  }
+  
+  .project-image-box {
+    flex: none;
+    width: 100%;
+  }
+}
