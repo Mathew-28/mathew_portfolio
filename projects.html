@@ -27,37 +27,34 @@
       <p>An AI-powered chatbot that asks users about their symptoms and provides basic health suggestions. It uses a simple knowledge base and natural language processing to guide user responses.</p>
       <p>Technologies: Python, NLP (NLTK), Flask, HTML/CSS</p>
       <p>Status: In Development</p>
-      <p>Image</p>
       <a href="your-link-here" class="link-inline">View Project</a>
-      <img src="images/budget-app.png"
+      <img src="images/health.png"
        alt="Smart Health Diagnosis Chatbot Project"
        class="project-image">
     </section>
 
     <hr>
 
-    <section id="project-dashboard" class="project-detail" data-reveal data-direction="up"> 
+    <section id="project-budget" class="project-detail" data-reveal data-direction="up"> 
       <h2>Expense Tracking and Budget PlannerApp</h2>
       <p>A mobile or web app that tracks user expenses and generates monthly budgets and spending reports.</p>
       <p>Technologies: Kotlin/Java (Mobile) or React.js (Web), Firebase / MySQL</p>
       <p>Status: In Development</p>
-      <p>Image</p>
       <a href="your-link-here" class="link-inline">View Project</a>
-      <img src="images/budget-app.png"
+      <img src="images/business.png"
        alt="Expense Tracking and Budget PlannerApp"
        class="project-image">
     </section>
 
     <hr>
 
-    <section id="project-dashboard" class="project-detail" data-reveal data-direction="up"> 
+    <section id="project-password" class="project-detail" data-reveal data-direction="up"> 
       <h2>Cybersecurity Password Strength Analyzer </h2>
       <p>A program that evaluates password strength and gives real-time feedback with security improvement suggestions.</p>
       <p>Technologies: Python, Tkinter or HTML/CSS/JS</p>
       <p>Status: In Development</p>
-      <p>Image</p>
        <a href="your-link-here" class="link-inline">View Project</a>
-      <img src="js/CODING/project2.png"
+      <img src="images/password-analyzer.png"
          alt="Password Strength Analyzer"
          class="project-image">
     </section>
@@ -69,6 +66,18 @@
     </div>
   </footer>
 
-  <script src="main.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var y = new Date().getFullYear();
+    var el = document.getElementById('year-projects');
+    if (el) el.textContent = y;
+
+    var reveals = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    reveals.forEach(function(el){
+      el.classList.add('visible');
+      el.style.opacity = 1;
+    });
+  });
+  </script>
 </body>
 </html>
