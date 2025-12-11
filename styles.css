@@ -225,4 +225,32 @@ hr{border:none;border-top:1px solid #e6edf3;margin:12px 0;}
   .contact-form{padding:9px;}
   .contact-info,.experience{padding:6px;}
   .nav{gap:0.5rem;}
+
+/* Header & nav base layout (merge with your existing container/nav-row rules) */
+.site-header { }
+.nav { display:flex; gap: 20px; align-items:center; }
+.nav a { text-decoration:none; color:inherit; padding: 8px; }
+
+/* Mobile CSS-only toggle using a hidden checkbox */
+.nav-checkbox { position:absolute; left:-9999px; }
+.nav-toggle { display:none; font-size: 1.6rem; padding: 8px; cursor: pointer; user-select:none; }
+
+/* Show toggle and stack nav on small screens */
+@media (max-width: 800px) {
+  .nav { display: none; flex-direction: column; gap: 12px; width: 100%; padding: 10px 16px; background: transparent; }
+  .nav-toggle { display:inline-block; }
+  /* When checkbox is checked, reveal the nav */
+  .nav-checkbox:checked ~ .nav { display:flex; }
+}
+
+/* Scroll reveal base styles */
+[data-reveal] { opacity: 0; transform: translateY(18px); transition: transform 0.7s cubic-bezier(.2,.9,.2,1), opacity 0.7s ease; }
+[data-reveal].visible { opacity: 1; transform: translateY(0); }
+
+/* If elements contain many children, each child will get visible class and own transitions */
+[data-reveal] > * { opacity: 0; transform: translateY(8px); transition: transform 0.7s cubic-bezier(.2,.9,.2,1), opacity 1s ease; }
+[data-reveal] > *.visible { opacity: 1; transform: translateY(0); }
+
+/* (Optional) small visual tweak for overlay when hidden via JS transitions */
+#welcomeOverlay[style*="display: none"] { display: none !important; }
 }
