@@ -10,60 +10,67 @@
   <header class="site-header">
     <div class="container nav-row">
       <a class="logo" href="index.html">Mathew Sebastian Monay</a>
+      <input id="nav-checkbox" class="nav-checkbox" type="checkbox" aria-hidden="true" />
+      <label for="nav-checkbox" class="nav-toggle" aria-label="Toggle navigation">☰</label>
       <nav class="nav">
         <a href="index.html" class="nav-link">Home</a>
         <a href="projects.html" class="nav-link">Projects</a>
         <a href="contact.html" class="nav-link active">Contact</a>
       </nav>
-      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
     </div>
   </header>
 
   <main class="container contact-page">
-    <h1 data-reveal data-direction="up">Contact</h1>
-    <p>Have a project, opportunity, or question? Send a message and I’ll get back to you.</p>
+    <h1>Contact</h1>
+    <p>Have a project, opportunity, or question? Send a message and I'll get back to you.</p>
 
-    <form class="contact-form" action="mailto:mathewsebastianmonay@gmail.com" method="post" enctype="text/plain" data-reveal data-direction="up">
-      <label for="name">Name</label>
-      <input id="name" name="name" required>
+    <div class="contact-grid">
+      <form class="contact-form" action="mailto:mathewsebastianmonay@gmail.com" method="post" enctype="text/plain">
+        <label for="name">Name</label>
+        <input id="name" name="name" placeholder="Your name" required>
 
-      <label for="email">Email</label>
-      <input id="email" name="email" type="email" required>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="your@email.com" required>
 
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="6" required></textarea>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" placeholder="Your message..." required></textarea>
 
-      <button class="btn" type="submit">Send</button>
-    </form>
+        <button class="btn" type="submit">Send Message</button>
+      </form>
 
-    <section class="contact-info" data-reveal data-direction="up">
-      <h2>Other ways to reach me</h2>
-      <p>Email: <a href="mailto:mathewsebastianmonay@gmail.com">mathewsebastianmonay@gmail.com</a></p>
-      <p>Phone: 0111123344556</p>
-      <p>Location: Iriga City</p>
+      <div class="contact-sidebar">
+        <section class="contact-info">
+          <h2>Get in Touch</h2>
+          <p><strong>Email:</strong><br><a href="mailto:mathewsebastianmonay@gmail.com">mathewsebastianmonay@gmail.com</a></p>
+          <p><strong>Phone:</strong><br>0111123344556</p>
+          <p><strong>Location:</strong><br>Iriga City</p>
+        </section>
 
-      <h2>Social Media</h2>
-      <p>GitHub: <a href="https://github.com/yourusername" target="_blank" rel="noopener">yourusername</a></p>
-      <p>Twitter: <a href="https://twitter.com/yourusername" target="_blank" rel="noopener">yourusername</a></p>
-    </section>
+        <section class="contact-info">
+          <h2>Social Media</h2>
+          <div class="social-links">
+            <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="social-link">GitHub</a>
+            <a href="https://twitter.com/yourusername" target="_blank" rel="noopener" class="social-link">Twitter</a>
+          </div>
+        </section>
 
-    <section class="experience" data-reveal data-direction="up">
-      <h2>Education</h2>
-      <div class="experience-item">
-        <h3>Camarines Sur Polytechnic Colleges</h3>
-        <p><em>Bachelor of Science in Computer Science</em> | 1st Year Student</p>
+        <section class="contact-info">
+          <h2>Education</h2>
+          <p><strong>Camarines Sur Polytechnic Colleges</strong></p>
+          <p>Bachelor of Science in Computer Science<br>1st Year Student</p>
+        </section>
+
+        <section class="contact-info">
+          <h2>Skills</h2>
+          <div class="skills-list">
+            <span class="skill-tag">HTML & CSS</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Problem Solving</span>
+            <span class="skill-tag">Team Collaboration</span>
+          </div>
+        </section>
       </div>
-
-      <div class="experience-item">
-        <h3>Skills</h3>
-        <ul>
-          <li>HTML & CSS</li>
-          <li>Python</li>
-          <li>Problem Solving</li>
-          <li>Team Collaboration</li>
-        </ul>
-      </div>
-    </section>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -72,12 +79,8 @@
     </div>
   </footer>
 
-  <script src="main.js"></script>
   <script>
-    // Dynamically set the current year in the footer
     document.getElementById('year-contact').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-
-
